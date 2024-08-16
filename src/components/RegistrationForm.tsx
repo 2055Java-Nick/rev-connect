@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';  
-import { Form, Input, Button, Select, Checkbox } from 'antd';
-import type { FormProps } from 'antd';
+import React from 'react';
+//import axios from 'axios';  
+import { Form, Input, Button, Select } from 'antd';
+//import type { FormProps } from 'antd';
+import { onFinish, onFinishFailed } from '../formHandlers';
 
 const { Option } = Select;
 
-
-type FieldType = {
+export type FieldType = {
   firstname?: string;
   lastname?: string;
   username?: string;
@@ -22,23 +22,18 @@ function onLoginPage(){
   localStorage.removeItem("userInfo");
 }
 
-const onFinish: FormProps['onFinish'] = (values) => {
-  // Handle form submission logic here
-  console.log(values);
-};
-
-
 const RegistrationForm: React.FC = () => {
   
-    
-
   return (
     <Form
       name="registration"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      style={{ maxWidth: 600 }}
+      initialValues={{ remember: true }}
       onFinish={onFinish}
-      initialValues={{
-        accounttype: 'user'
-      }}
+      onFinishFailed={onFinishFailed}
+      autoComplete='off'
     >
       <Form.Item <FieldType>
         label="Firstname"
@@ -65,19 +60,19 @@ const RegistrationForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item <FieldType>
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item <FieldType>
         label="Email"
         name="email"
         rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
       >
         <Input />
+      </Form.Item>
+
+      <Form.Item <FieldType>
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
       </Form.Item>
 
       <Form.Item <FieldType>
@@ -90,19 +85,12 @@ const RegistrationForm: React.FC = () => {
           <Option value="admin">Business</Option>
         </Select>
       </Form.Item>
-      <Form.Item <FieldType>
-        name = "remember"
-        valuePropName = "checked"
-        wrapperCol={{ offset: 8, span: 16 }}>
-        <Checkbox>Remember me</Checkbox>
-        
 
-      </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
           Register
         </Button>
-      </Form.Item>s
+      </Form.Item>
     </Form>
   );
 };
