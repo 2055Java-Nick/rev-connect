@@ -11,6 +11,7 @@ export type FieldType = {
   lastName?: string;
   username?: string;
   userPwd?: string;
+  confirmPassword?: string;
   email?: string;
   isBusiness?: boolean;
 };
@@ -70,6 +71,24 @@ const RegistrationForm: React.FC = () => {
         label="Password"
         name="userPwd"
         rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item <FieldType>
+        label="Confirm Password"
+        name="confirmPassword"
+        dependencies={['userPwd']}
+        rules={[
+          { required: true, message: 'Please confirm your password!' },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('userPwd') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords do not match!'));
+            },
+          }),
+        ]}
       >
         <Input.Password />
       </Form.Item>
