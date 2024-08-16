@@ -7,13 +7,12 @@ import { onFinish, onFinishFailed } from '../formHandlers';
 const { Option } = Select;
 
 export type FieldType = {
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
   username?: string;
-  password?: string;
+  userPwd?: string;
   email?: string;
-  accounttype?: string;
-  remember?: string;
+  isBusiness?: boolean;
 };
 
 // clean user infomation
@@ -37,7 +36,7 @@ const RegistrationForm: React.FC = () => {
     >
       <Form.Item <FieldType>
         label="Firstname"
-        name="firstname"
+        name="firstName"
         rules={[{ required: true, message: 'Please input your firstname!' }]}
       >
         <Input />
@@ -45,7 +44,7 @@ const RegistrationForm: React.FC = () => {
 
       <Form.Item <FieldType>
         label="Lastname"
-        name="lastname"
+        name="lastName"
         rules={[{ required: true, message: 'Please input your lastname!' }]}
       >
         <Input />
@@ -69,7 +68,7 @@ const RegistrationForm: React.FC = () => {
 
       <Form.Item <FieldType>
         label="Password"
-        name="password"
+        name="userPwd"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password />
@@ -77,7 +76,7 @@ const RegistrationForm: React.FC = () => {
 
       <Form.Item <FieldType>
         label="Account Type"
-        name="accounttype"
+        name="isBusiness"
         rules={[{ required: true, message: 'Please select your account type!' }]}
       >
         <Select placeholder = "Please Select">

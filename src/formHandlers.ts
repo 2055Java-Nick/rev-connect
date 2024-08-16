@@ -7,7 +7,7 @@ import { FieldType } from './components/RegistrationForm';
     console.log('Form Data:', values);
 
     try {
-        const response = await axios.post('http://localhost:8080/submit', values, {
+        const response = await axios.post('http://localhost:5000/register', values, {
           headers: {
             'Content-Type': 'application/json',
           },
