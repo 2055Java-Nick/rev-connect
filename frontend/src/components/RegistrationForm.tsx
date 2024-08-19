@@ -1,8 +1,5 @@
-import React from 'react';
-//import axios from 'axios';  
-import { Form, Input, Button, Select } from 'antd';
-//import type { FormProps } from 'antd';
-import { onFinish, onFinishFailed } from '../formHandlers';
+import { Form, Input, Button, Select } from "antd";
+import { onFinish, onFinishFailed } from "../formHandlers";
 
 const { Option } = Select;
 
@@ -18,12 +15,11 @@ export type FieldType = {
 
 // clean user infomation
 onLoginPage();
-function onLoginPage(){
+function onLoginPage() {
   localStorage.removeItem("userInfo");
 }
 
 const RegistrationForm: React.FC = () => {
-  
   return (
     <Form
       name="registration"
@@ -33,59 +29,67 @@ const RegistrationForm: React.FC = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      autoComplete='off'
+      autoComplete="off"
     >
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Firstname"
         name="firstName"
-        rules={[{ required: true, message: 'Please input your firstname!' }]}
+        rules={[{ required: true, message: "Please input your firstname!" }]}
       >
         <Input />
       </Form.Item>
 
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Lastname"
         name="lastName"
-        rules={[{ required: true, message: 'Please input your lastname!' }]}
+        rules={[{ required: true, message: "Please input your lastname!" }]}
       >
         <Input />
       </Form.Item>
 
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Username"
         name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: "Please input your username!" }]}
       >
         <Input />
       </Form.Item>
 
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Email"
         name="email"
-        rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your email!",
+            type: "email",
+          },
+        ]}
       >
         <Input />
       </Form.Item>
 
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Password"
         name="userPwd"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: "Please input your password!" }]}
       >
         <Input.Password />
       </Form.Item>
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Confirm Password"
         name="confirmPassword"
-        dependencies={['userPwd']}
+        dependencies={["userPwd"]}
         rules={[
-          { required: true, message: 'Please confirm your password!' },
+          { required: true, message: "Please confirm your password!" },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || getFieldValue('userPwd') === value) {
+              if (!value || getFieldValue("userPwd") === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error('The two passwords do not match!'));
+              return Promise.reject(
+                new Error("The two passwords do not match!"),
+              );
             },
           }),
         ]}
@@ -93,12 +97,14 @@ const RegistrationForm: React.FC = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item <FieldType>
+      <Form.Item<FieldType>
         label="Account Type"
         name="isBusiness"
-        rules={[{ required: true, message: 'Please select your account type!' }]}
+        rules={[
+          { required: true, message: "Please select your account type!" },
+        ]}
       >
-        <Select placeholder = "Please Select">
+        <Select placeholder="Please Select">
           <Option value="user">Personal</Option>
           <Option value="admin">Business</Option>
         </Select>
@@ -114,3 +120,4 @@ const RegistrationForm: React.FC = () => {
 };
 
 export default RegistrationForm;
+
