@@ -16,7 +16,9 @@
                 "dbaeumer.vscode-eslint",           // ESLint extension
                 "eamodio.gitlens",                  // GitLens extension for Git support
                 "github.github-vscode-theme",       // GitHub Theme
-                "dsznajder.es7-react-js-snippets"  // React snippets
+                "dsznajder.es7-react-js-snippets",  // React snippets
+                "hbenl.vscode-test-explorer",       // Test Explorer UI
+                "ms-azuretools.vscode-docker"       // Docker extension
             ],
             "settings": {
                 "java.jdt.ls.java.home": "/usr/local/openjdk-17",
@@ -27,6 +29,7 @@
                         "default": true
                     }
                 ],
+                "remote.containers.defaultExtensions": [],
                 "workbench.colorTheme": "GitHub Dark" // GitHub theme
             }
         }
