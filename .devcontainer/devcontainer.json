@@ -1,7 +1,8 @@
 {
-    "name": "Java 17 Dev Container",
+    "name": "Full Stack Dev Container",
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "context": "."
     },
     "customizations": {
         "vscode": {
@@ -10,20 +11,28 @@
                 "vscjava.vscode-maven",
                 "vscjava.vscode-spring-initializr",
                 "vscjava.vscode-java-debug",
-                "vscjava.vscode-java-test"
-            ]
+                "vscjava.vscode-java-test",
+                "esbenp.prettier-vscode",           // Prettier extension
+                "dbaeumer.vscode-eslint",           // ESLint extension
+                "eamodio.gitlens",                  // GitLens extension for Git support
+                "github.github-vscode-theme",       // GitHub Theme
+                "dsznajder.es7-react-js-snippets"  // React snippets
+            ],
+            "settings": {
+                "java.jdt.ls.java.home": "/usr/local/openjdk-17",
+                "java.configuration.runtimes": [
+                    {
+                        "name": "JavaSE-17",
+                        "path": "/usr/local/openjdk-17",
+                        "default": true
+                    }
+                ],
+                "workbench.colorTheme": "GitHub Dark" // GitHub theme
+            }
         }
     },
-    "settings": {
-        "java.home": "/usr/local/openjdk-17",
-        "java.configuration.runtimes": [
-            {
-                "name": "JavaSE-17",
-                "path": "/usr/local/openjdk-17",
-                "default": true
-            }
-        ]
-    },
-    "postCreateCommand": "cd backend && mvn clean install",
-    "remoteUser": "vscode"
+    "postCreateCommand": "cd backend && mvn clean install && cd ../frontend && npm install",
+    "remoteUser": "vscode",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/workspace"
 }
